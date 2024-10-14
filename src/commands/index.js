@@ -2,6 +2,7 @@ import { up, cd, ls } from './navigation.js';
 import { cat, add, rn, cp, mv, rm } from './fileOperations.js';
 import { getEOL, getCpus, getHomedir, getUsername, getArch } from './osInfo.js';
 import { hash } from './hash.js';
+import { compress, decompress } from './compression.js';
 
 export async function handleCommand(input) {
   const [command, ...args] = input.split(' ');
@@ -69,6 +70,20 @@ export async function handleCommand(input) {
         console.log('Operation failed: No file specified');
         }
         break;
+        case 'compress':
+          if (args[0] && args[1]) {
+            await compress(args[0], args[1]);
+          } else {
+            console.log('Operation failed: Invalid arguments for compress');
+          }
+          break;
+        case 'decompress':
+          if (args[0] && args[1]) {
+            await decompress(args[0], args[1]);
+          } else {
+            console.log('Operation failed: Invalid arguments for decompress');
+          }
+          break;
       default:
         console.log('Invalid input: Unknown command');
     }
