@@ -41,7 +41,6 @@ export function ls() {
           if (a.type === 'file' && b.type === 'directory') return 1;
           return a.name.localeCompare(b.name);
         });
-
         console.table(entries);
         resolve();
       }

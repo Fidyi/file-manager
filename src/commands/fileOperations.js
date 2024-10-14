@@ -97,7 +97,6 @@ export async function cp(filePath, newDir) {
   });
 }
 
-
 export async function mv(filePath, newDir) {
   try {
     await cp(filePath, newDir);
