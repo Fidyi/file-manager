@@ -1,5 +1,6 @@
 import { up, cd, ls } from './navigation.js';
 import { cat, add, rn, cp, mv, rm } from './fileOperations.js';
+import { getEOL, getCpus, getHomedir, getUsername, getArch } from './osInfo.js';
 
 export async function handleCommand(input) {
   const [command, ...args] = input.split(' ');
@@ -57,10 +58,36 @@ export async function handleCommand(input) {
           console.log('Operation failed: No file specified');
         }
         break;
+      case 'os':
+        handleOSCommand(args);
+      break;
       default:
         console.log('Invalid input: Unknown command');
     }
   } catch (error) {
     console.error('Operation failed');
+  }
+}
+
+
+function handleOSCommand(args) {
+  switch (args[0]) {
+    case '--EOL':
+      getEOL();
+      break;
+    case '--cpus':
+      getCpus();
+      break;
+    case '--homedir':
+      getHomedir();
+      break;
+    case '--username':
+      getUsername();
+      break;
+    case '--architecture':
+      getArch();
+      break;
+    default:
+      console.log('Invalid input');
   }
 }
