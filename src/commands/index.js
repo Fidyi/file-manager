@@ -92,7 +92,6 @@ export async function handleCommand(input) {
   }
 }
 
-
 function handleOSCommand(args) {
   switch (args[0]) {
     case '--EOL':
