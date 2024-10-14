@@ -1,4 +1,3 @@
-import os from 'os';
 import { stdin } from 'process';
 import { handleCommand } from './commands/index.js';
 
@@ -9,7 +8,10 @@ const username = usernameArg ? usernameArg.split('=')[1] : 'User';
 console.log(`Welcome to the File Manager, ${username}!`);
 console.log(`You are currently in ${process.cwd()}`);
 process.stdout.write('Enter command: ');
-
+process.on('SIGINT', () => {
+  console.log(`\nThank you for using File Manager, ${username}, goodbye!`);
+  process.exit();
+});
 stdin.setEncoding('utf-8');
 
 stdin.on('data', async (data) => {
