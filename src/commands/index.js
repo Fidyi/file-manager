@@ -1,6 +1,7 @@
 import { up, cd, ls } from './navigation.js';
 import { cat, add, rn, cp, mv, rm } from './fileOperations.js';
 import { getEOL, getCpus, getHomedir, getUsername, getArch } from './osInfo.js';
+import { hash } from './hash.js';
 
 export async function handleCommand(input) {
   const [command, ...args] = input.split(' ');
@@ -61,6 +62,13 @@ export async function handleCommand(input) {
       case 'os':
         handleOSCommand(args);
       break;
+      case 'hash':
+        if (args[0]) {
+         await hash(args[0]);
+        } else {
+        console.log('Operation failed: No file specified');
+        }
+        break;
       default:
         console.log('Invalid input: Unknown command');
     }
