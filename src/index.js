@@ -6,6 +6,8 @@ const username = usernameArg ? usernameArg.split('=')[1] : 'user';
 const printCurrentDirectory = () => {
     console.log(`You are currently in ${process.cwd()}`);
 };
+const homeDirectory = os.homedir();
+process.chdir(homeDirectory);
 console.log(`Welcome to the File Manager, ${username}!`);
 printCurrentDirectory();
 process.stdin.on('data', (data) => {
